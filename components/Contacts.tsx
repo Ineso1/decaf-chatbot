@@ -1,5 +1,7 @@
 import { Text, Button } from '@vercel/examples-ui';
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 type Contact = {
   id: number;
@@ -16,6 +18,7 @@ const contacts: Contact[] = [
 
 function Contacts() {
   const [copiedContact, setCopiedContact] = useState<string | null>(null);
+  const myPublicKey = '0x1234567890abcdef'; // Replace with your actual public key
 
   const copyToClipboard = (publicKey: string) => {
     navigator.clipboard.writeText(publicKey);
@@ -43,12 +46,15 @@ function Contacts() {
       <ul className="list-none flex-grow overflow-auto">
         {contacts.map((contact) => (
           <li key={contact.id} className="py-2 flex w-full">
-            <button
-              className="px-4 py-1 text-gray-200 rounded w-full text-left hover:bg-slate-400 hover:text-slate-900 focus:outline-none"
-              onClick={() => copyToClipboard(contact.publicKey)}
-            >
-              {contact.name}
-            </button>
+            <div className="flex items-center">
+              <FontAwesomeIcon icon={faUser} className="text-gray-200 mr-2" />
+              <button
+                className="px-4 py-1 text-gray-200 rounded w-full text-left hover:bg-slate-400 hover:text-slate-900 focus:outline-none"
+                onClick={() => copyToClipboard(contact.publicKey)}
+              >
+                {contact.name}
+              </button>
+            </div>
             {copiedContact === contact.publicKey && (
               <span className="text-green-500 ml-2">Copied!</span>
             )}
@@ -64,6 +70,21 @@ function Contacts() {
           <Button onClick={handleCreateContact} className="w-full" variant="secondary">
             Create Contact
           </Button>
+        </div>
+        <div className="flex flex-col items-center mt-4">
+
+          <div className="flex items-center mt-2">
+            <FontAwesomeIcon icon={faUser} className="text-gray-200 mr-2" />
+            <button
+              className="px-4 py-1 text-gray-200 rounded w-full text-left hover:bg-slate-400 hover:text-slate-900 focus:outline-none"
+              onClick={() => copyToClipboard(myPublicKey)}
+            >
+              {myPublicKey}
+            </button>
+            {copiedContact === myPublicKey && (
+              <span className="text-green-500 ml-2">Copied!</span>
+            )}
+          </div>
         </div>
       </div>
     </div>
