@@ -1,14 +1,19 @@
 //Create a login page for solana wallet
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import logo from "../../assets/img/logo-white.png";
 import { connectToPhantomWallet } from '../../utils/SolanaFunctions';
-import { useState } from "react";
 import { Cookies } from "react-cookie";
 
 export default function Login() {
   const [error, setError] = useState<string>("");
   const cookies = new Cookies();
+  // useEffect(() => {
+  //   const walletAddress = cookies.get('walletAddress');
+  //   if (walletAddress) {
+  //     window.location.href = '/';
+  //   }
+  // }, []);
   const handleClick = async () => {
     try {
         const wallet = await connectToPhantomWallet();
