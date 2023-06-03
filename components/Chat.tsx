@@ -116,7 +116,7 @@ export function Chat() {
   return (
     <div className="rounded-2xl border-zinc-100  lg:border lg:p-6">
       {messages.map(({ content, role }, index) => (
-        <ChatLine key={index} role={role} content={content} />
+        <ChatLine key={index} role={role} content={content} image="decaf_logo.png"/>
       ))}
 
       {loading && <LoadingChatLine />}

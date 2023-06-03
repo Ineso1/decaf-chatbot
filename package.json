@@ -18,6 +18,7 @@
     "react": "latest",
     "react-cookie": "^4.1.1",
     "react-dom": "latest",
+    "react-icons": "^4.9.0",
     "react-wrap-balancer": "^0.1.5"
   },
   "devDependencies": {
