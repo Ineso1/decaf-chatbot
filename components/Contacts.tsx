@@ -18,7 +18,7 @@ const contacts: Contact[] = [
 
 function Contacts() {
   const [copiedContact, setCopiedContact] = useState<string | null>(null);
-  const myPublicKey = '0x1234567890abcdef'; // Replace with your actual public key
+  const myPublicKey = '0x0034567890abcdef'; // Replace with your actual public key
 
   const copyToClipboard = (publicKey: string) => {
     navigator.clipboard.writeText(publicKey);
