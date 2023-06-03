@@ -8,9 +8,9 @@ type Contact = {
 };
 
 const contacts: Contact[] = [
-  { id: 1, name: 'John Doe', publicKey: '0x1234567890abcdef' },
-  { id: 2, name: 'Jane Smith', publicKey: '0x0987654321fedcba' },
-  { id: 3, name: 'Bob Johnson', publicKey: '0xabcdef0987654321' },
+  { id: 1, name: 'Armando Terrazas', publicKey: '0x1234567890abcdef' },
+  { id: 2, name: 'Daniel Munos', publicKey: '0x0987654321fedcba' },
+  { id: 3, name: 'Ines Garcia', publicKey: '0xabcdef0987654321' },
   // Add more contacts as needed
 ];
 
@@ -26,23 +26,21 @@ function Contacts() {
   };
 
   const handleManageContacts = () => {
-    // Logic for managing all contacts
     console.log('Managing all contacts');
   };
 
   const handleCreateContact = () => {
-    // Logic for creating a new contact
     console.log('Creating a new contact');
   };
 
   return (
-    <div className="py-4 px-8 w-full">
+    <div className="flex flex-col py-4 px-2 w-full h-full">
       <div className="flex justify-between items-center mb-4">
         <Text variant="h2" className="text-white">
-          My Contacts
+          Contacts
         </Text>
       </div>
-      <ul className="list-none">
+      <ul className="list-none flex-grow overflow-auto">
         {contacts.map((contact) => (
           <li key={contact.id} className="py-2 flex w-full">
             <button
@@ -57,13 +55,16 @@ function Contacts() {
           </li>
         ))}
       </ul>
-      <div className="flex flex-col items-center w-full">
-        <Button onClick={handleManageContacts} className="my-4 w-full">
-          Manage Contacts
-        </Button>
-        <Button onClick={handleCreateContact} className='w-full' variant="secondary">
-          Create Contact
-        </Button>
+      <div className="flex flex-col w-full items-center">
+        <div className="flex-grow" /> {/* Spacer to push the buttons to the bottom */}
+        <div className="flex flex-col justify-center w-full items-center">
+          <Button onClick={handleManageContacts} className="my-4 w-full">
+            Manage Contacts
+          </Button>
+          <Button onClick={handleCreateContact} className="w-full" variant="secondary">
+            Create Contact
+          </Button>
+        </div>
       </div>
     </div>
   );

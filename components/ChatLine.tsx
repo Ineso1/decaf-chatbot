@@ -19,7 +19,7 @@ export const LoadingChatLine = () => (
       <div className="min-w-0 flex-1">
         <p className="font-large text-xxl text-gray-900">
           <a href="#" className="hover:underline">
-            AI
+            Decaf
           </a>
         </p>
         <div className="space-y-4 pt-4">
@@ -43,42 +43,58 @@ const convertNewLines = (text: string) =>
     </span>
   ));
 
-export function ChatLine({ role = 'assistant', content, image }: ChatGPTMessage) {
-  if (!content) {
-    return null;
-  }
-  const formatteMessage = convertNewLines(content);
-
-  return (
-    <div
-      className={
-        role !== 'assistant' ? 'float-right clear-both' : 'float-left clear-both'
-      }
-    >
-      <BalancerWrapper>
-        <div className="float-right mb-5 rounded-lg bg-white px-4 py-5 shadow-lg ring-1 ring-zinc-100 sm:px-6">
-          <div className="flex space-x-3">
-            {role === 'assistant' && image && (
-              <img src={image} alt="AI Avatar" className="h-10 w-10 rounded-full" />
-            )}
-            <div className="flex-1 gap-4">
-              <p className="font-large text-xxl text-gray-900">
-                <a href="#" className="hover:underline">
-                  {role === 'assistant' ? 'AI' : 'You'}
-                </a>
-              </p>
-              <p
-                className={clsx(
-                  'text',
-                  role === 'assistant' ? 'font-semibold font-' : 'text-gray-400'
-                )}
-              >
-                {formatteMessage}
-              </p>
+  export function ChatLine({ role = 'assistant', content, image }: ChatGPTMessage) {
+    if (!content) {
+      return null;
+    }
+    const formatteMessage = convertNewLines(content);
+  
+    return (
+      <div
+        className={
+          role !== 'assistant' ? 'float-right clear-both' : 'float-left clear-both'
+        }
+      >
+        <BalancerWrapper>
+          <div
+            className={
+              role !== 'assistant'
+                ? 'float-right mb-5 rounded-lg px-4 py-5 shadow-lg ring-1 ring-zinc-100 sm:px-6 bg-gradient-to-r from-violet-100 to-white-300'
+                : 'float-left mb-5 rounded-lg px-4 py-5 shadow-lg ring-1 ring-zinc-100 sm:px-6 bg-gradient-to-r from-white to-violet-100'
+            }
+          >
+            <div className="flex space-x-3">
+              {role === 'assistant' && (
+                <div className="flex-shrink-0">
+                  {image && (
+                    <img
+                      className="h-10 w-10 rounded-full"
+                      src={image}
+                      alt="User Avatar"
+                    />
+                  )}
+                </div>
+              )}
+              <div className="flex-1 gap-4">
+                <p className="font-large text-xxl text-gray-900">
+                  <a href="#" className="hover:underline">
+                    {role === 'assistant' ? 'AI' : 'You'}
+                  </a>
+                </p>
+                <p
+                  className={clsx(
+                    'text',
+                    role === 'assistant' ? 'font-semibold font-' : 'text-black font-medium'
+                  )}
+                >
+                  {formatteMessage}
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </BalancerWrapper>
-    </div>
-  );
-}
+        </BalancerWrapper>
+      </div>
+    );
+  }
+  
+  
