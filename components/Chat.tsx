@@ -9,7 +9,7 @@ const COOKIE_NAME = 'nextjs-example-ai-chat-gpt3'
 export const initialMessages: ChatGPTMessage[] = [
   {
     role: 'assistant',
-    content: 'Hi! I am a friendly AI assistant. Ask me anything!',
+    content: 'Hi! I am a Decaf AI assistant. Ask me anything!',
   },
 ]
 
@@ -39,7 +39,7 @@ const InputMessage = ({ input, setInput, sendMessage }: any) => (
         setInput('')
       }}
     >
-      Say
+      Send
     </Button>
   </div>
 )
@@ -114,15 +114,17 @@ export function Chat() {
   }
 
   return (
-    <div className="rounded-2xl border-zinc-100  lg:border lg:p-6">
+    <div className="rounded-2xl border-zinc-100  lg:border lg:p-6 w-full h-full flex flex-col">
+      <div className='h-[500px] overflow-y-auto'>
       {messages.map(({ content, role }, index) => (
-        <ChatLine key={index} role={role} content={content} />
+        <ChatLine key={index} role={role} content={content} image="decaf_logo.png"/>
       ))}
+      </div>
 
       {loading && <LoadingChatLine />}
 
       {messages.length < 2 && (
-        <span className="mx-auto flex flex-grow text-gray-600 clear-both">
+        <span className="mx-auto flex flex-grow text-gray-600 clear-both items-center justify-center">
           Type a message to start the conversation
         </span>
       )}
