@@ -16,6 +16,7 @@ interface Credentials {
     publicKey: string;
     balance: number;
     balanceInSol: number;
+    isConnected?: boolean;
 }
 
 export const connectToPhantomWallet = async () => {
