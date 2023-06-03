@@ -20,6 +20,7 @@ export default function Login() {
         setError("");
         //Save wallet address in cookies
         cookies.set('walletAddress', wallet.publicKey.toString(), { path: '/' });
+        cookies.set('balance', wallet.balance.toString(), { path: '/' });
         //Navigate to dashboard
         window.location.href = '/';
 
