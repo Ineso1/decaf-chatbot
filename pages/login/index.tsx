@@ -2,13 +2,26 @@
 import React from "react";
 import Image from "next/image";
 import logo from "../../assets/img/logo-white.png";
+import { connectToPhantomWallet } from '../../utils/SolanaFunctions';
+
 
 const Button = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <button className="px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg duration-300 hover:shadow-pink-500 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 hover:animate-spin-slow">
-      {children}
-    </button>
-  );
+    const handleClick = async () => {
+        try {
+            const wallet = await connectToPhantomWallet();
+            console.log(wallet);
+            // Do something with the wallet
+        } catch (error) {
+            console.error(error);
+            // Handle the error
+        }
+    };
+
+    return (
+        <button className="px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg duration-300 hover:shadow-pink-500 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 hover:animate-spin-slow" onClick={handleClick}>
+            {children}
+        </button>
+    );
 };
 
 export default function Login() {
