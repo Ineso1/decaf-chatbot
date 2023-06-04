@@ -121,11 +121,10 @@ export function Chat({walletPublicKey}: { walletPublicKey: string }) {
       console.log(cleanedJSON);
       const parsedJSON = JSON.parse(cleanedJSON);
       console.log(parsedJSON);
-      const targetWalletAddress = parsedJSON.addressDestino;
   
       setMessages([
         ...newMessages,
-        { role: "assistant", content: "Transacción exitosa" } as ChatGPTMessage,
+        { role: "assistant", content: "Aprueba la transacción con tu billetera para confirmar la transferencia" } as ChatGPTMessage,
       ]);
 
       const cookies = new Cookies();

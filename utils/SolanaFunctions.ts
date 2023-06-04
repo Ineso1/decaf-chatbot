@@ -93,7 +93,7 @@ export async function signAndSend({fromWallet, toAddress, amount}: TransferData)
     const transaction = new Transaction();
     transaction.add(instruction);
     transaction.feePayer = publicKey;
-    let hash = await connection.getRecentBlockhash();
+    let hash = await connection.getLatestBlockhash();
     transaction.recentBlockhash = hash.blockhash;
     return transaction;
   }
