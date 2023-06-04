@@ -14,7 +14,7 @@ function Home() {
           </div>
         </aside>
         <section className="flex flex-grow bg-white py-4 px-8 relative z-10 rounded-3xl h-full w-full items-end overflow-auto">
-          <Chat />
+          <Chat walletPublicKey={walletAddress}/>
         </section>
       </main>
     </div>
