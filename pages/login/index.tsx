@@ -8,12 +8,12 @@ import { Cookies } from "react-cookie";
 export default function Login() {
   const [error, setError] = useState<string>("");
   const cookies = new Cookies();
-  // useEffect(() => {
-  //   const walletAddress = cookies.get('walletAddress');
-  //   if (walletAddress) {
-  //     window.location.href = '/';
-  //   }
-  // }, []);
+  useEffect(() => {
+    const walletAddress = cookies.get('walletAddress');
+    if (walletAddress) {
+      window.location.href = '/';
+    }
+  }, []);
   const handleClick = async () => {
     try {
         const wallet = await connectToPhantomWallet();
