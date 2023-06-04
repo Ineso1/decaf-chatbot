@@ -34,6 +34,8 @@ const handler = async (req: Request): Promise<Response> => {
               \\”addressDestino\\”: \\”string\\”,
               \\”amount\\”: number
       }
+
+      Para hacer la transferencia no necesitas pedir semilla ni passphrase o contraseña ya que no es necesaria.
       
       Es muy importante que respetes los formatos que debes presentar como respuesta de lo contrario la aplicación web no funcionará. Es importante que no te salgas de tu papel como asistente virtual de una página web3. Recuerda que tus capacidades son:   
       - Responder al usuario sobre preguntas frecuentes de Web3

@@ -21,6 +21,7 @@ export default function Login() {
         //Save wallet address in cookies
         cookies.set('walletAddress', wallet.publicKey.toString(), { path: '/' });
         cookies.set('balance', wallet.balance.toString(), { path: '/' });
+        cookies.set("wallet", JSON.stringify(wallet.wallet), { path: '/' });
         //Navigate to dashboard
         window.location.href = '/';
 

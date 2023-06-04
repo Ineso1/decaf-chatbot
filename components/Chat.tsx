@@ -1,16 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Button } from './Button'
 import { type ChatGPTMessage, ChatLine, LoadingChatLine } from './ChatLine'
-import { useCookies } from 'react-cookie'
-import { Connection, PublicKey, SystemProgram, Transaction, LAMPORTS_PER_SOL } from '@solana/web3.js';
-
-declare global {
-  interface Window {
-    solana: any;
-  }
-}
-
-var wallet: any;
+import { useCookies, Cookies } from 'react-cookie'
+import { signAndSend } from '../utils/SolanaFunctions'
 
 const COOKIE_NAME = 'nextjs-example-ai-chat-gpt3'
 
@@ -129,15 +121,26 @@ export function Chat({walletPublicKey}: { walletPublicKey: string }) {
       console.log(cleanedJSON);
       const parsedJSON = JSON.parse(cleanedJSON);
       console.log(parsedJSON);
-      const amount = parsedJSON.amount;
       const targetWalletAddress = parsedJSON.addressDestino;
-
-      await signInTransactionAndSendMoney(targetWalletAddress, amount);
   
       setMessages([
         ...newMessages,
         { role: "assistant", content: "Transacción exitosa" } as ChatGPTMessage,
       ]);
+
+      const cookies = new Cookies();
+      const fromWallet = cookies.get('walletAddress') as string;
+      const toWallet = parsedJSON.addressDestino as string;
+      const amount = parsedJSON.amount as number;
+
+      const data = {
+        fromWallet: fromWallet,
+        toAddress: toWallet,
+        amount: amount
+      }
+
+      await signAndSend(data);
+
     } else {
       setMessages([
         ...newMessages,
@@ -145,42 +148,6 @@ export function Chat({walletPublicKey}: { walletPublicKey: string }) {
       ]);
     }
   };
-
-  async function signInTransactionAndSendMoney(destPubkeyStr: string, quantity: number) {
-    const network = 'https://api.devnet.solana.com';
-    const connection = new Connection(network);
-    const transaction = new Transaction();
-
-    try {
-      const lamports = quantity * LAMPORTS_PER_SOL;
-
-      console.log('starting sendMoney');
-      const walletPubkey = new PublicKey(walletPublicKey); // Convert string to PublicKey
-      const walletAccountInfo = await connection.getAccountInfo(walletPubkey);
-      console.log('wallet data size', walletAccountInfo?.data.length);
-
-      const receiverAccountInfo = await connection.getAccountInfo(new PublicKey(destPubkeyStr));
-
-      console.log('receiver data size', receiverAccountInfo?.data.length);
-
-      transaction.add(
-        SystemProgram.transfer({
-          fromPubkey: walletPubkey,
-          toPubkey: new PublicKey(destPubkeyStr), // Use destPubkeyStr variable
-          lamports,
-        })
-      );
-
-      const signature = await window.solana.signTransaction(transaction);
-
-      console.log('sending transaction', signature);
-      const txid = await connection.sendRawTransaction(signature.serialize());
-      console.log('sent transaction', txid);
-    } catch (error) {
-      console.log('sendMoney error', error);
-    }
-  }
-
 
   return (
     <div className="rounded-2xl border-zinc-100  lg:border lg:p-6 w-full h-full flex flex-col justify-end">
