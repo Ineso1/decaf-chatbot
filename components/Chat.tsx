@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { Button } from './Button'
 import { type ChatGPTMessage, ChatLine, LoadingChatLine } from './ChatLine'
 import { useCookies } from 'react-cookie'
-import { Console } from 'console'
 
 const COOKIE_NAME = 'nextjs-example-ai-chat-gpt3'
 
