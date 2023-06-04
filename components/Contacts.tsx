@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { ellipsizeAddress } from '../utils/SolanaFunctions';
+import { Cookies, useCookies } from 'react-cookie';
+import { useEffect } from 'react';
 
 type Contact = {
   id: number;
@@ -12,14 +14,19 @@ type Contact = {
 
 const contacts: Contact[] = [
   { id: 1, name: 'Armando Terrazas', publicKey: '0x1234567890abcdef' },
-  { id: 2, name: 'Daniel Munos', publicKey: '0x0987654321fedcba' },
-  { id: 3, name: 'Ines Garcia', publicKey: '0xabcdef0987654321' },
+  { id: 2, name: 'Daniel Muños', publicKey: '0x0987654321fedcba' },
+  { id: 3, name: 'Inés García', publicKey: '0xabcdef0987654321' },
   // Add more contacts as needed
 ];
 
-function Contacts({walletAddress}: {walletAddress: string}) {
+function Contacts() {
   const [copiedContact, setCopiedContact] = useState<string | null>(null);
-  const myPublicKey = walletAddress ? walletAddress : '0x0034567890abcdef';
+  const [myPublicKey, setMyPublicKey] = useState<string>("");
+  const [cookies] = useCookies(['walletAddress']);
+
+  useEffect(() => {
+    setMyPublicKey(cookies.walletAddress);
+  }, [cookies]);
 
   const copyToClipboard = (publicKey: string) => {
     navigator.clipboard.writeText(publicKey);

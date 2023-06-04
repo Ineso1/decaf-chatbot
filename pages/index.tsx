@@ -16,7 +16,7 @@ function Home() {
       <main className="flex flex-grow">
         <aside className="flex flex-col items-center bg-slate-900 py-4 px-4 w-full md:w-1/4 h-full">
           <div className="fixed top-0 h-full">
-            <Contacts walletAddress={walletAddress}/>
+            <Contacts />
           </div>
         </aside>
         <section className="flex flex-grow bg-white py-4 px-8 relative z-10 rounded-3xl h-full w-full items-end overflow-auto">
