@@ -122,6 +122,8 @@ export function Chat() {
       const cleanedJSON = isResponseObject[0].replace(/\s/g, '');
       console.log(msjRgx);
       console.log(cleanedJSON);
+      const parsedJSON = JSON.parse(cleanedJSON);
+      console.log(parsedJSON);
     }
   }
 
