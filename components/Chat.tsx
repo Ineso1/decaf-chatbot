@@ -61,71 +61,78 @@ export function Chat() {
 
   // send message to API /api/chat endpoint
   const sendMessage = async (message: string) => {
-    setLoading(true)
+    setLoading(true);
     const newMessages = [
       ...messages,
-      { role: 'user', content: message } as ChatGPTMessage,
-    ]
-    setMessages(newMessages)
-    const last10messages = newMessages.slice(-10) // remember last 10 messages
-    console.log('Sending to edge function: ', last10messages)
-
-    const response = await fetch('/api/chat', {
-      method: 'POST',
+      { role: "user", content: message } as ChatGPTMessage,
+    ];
+    setMessages(newMessages);
+    const last10messages = newMessages.slice(-10); // remember last 10 messages
+    console.log("Sending to edge function: ", last10messages);
+  
+    const response = await fetch("/api/chat", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         messages: last10messages,
         user: cookie[COOKIE_NAME],
       }),
-    })
-
-    console.log('Edge function returned.')
-    console.log(response)
-
+    });
+  
+    console.log("Edge function returned.");
+    console.log(response);
+  
     if (!response.ok) {
-      throw new Error(response.statusText)
+      throw new Error(response.statusText);
     }
-
+  
     // This data is a ReadableStream
-    const data = response.body
+    const data = response.body;
     if (!data) {
-      return
+      return;
     }
-
-    const reader = data.getReader()
-    const decoder = new TextDecoder()
-    let done = false
-
-    let lastMessage = ''
-
+  
+    const reader = data.getReader();
+    const decoder = new TextDecoder();
+    let done = false;
+  
+    let lastMessage = "";
+  
     while (!done) {
-      const { value, done: doneReading } = await reader.read()
-      done = doneReading
-      const chunkValue = decoder.decode(value)
-
-      lastMessage = lastMessage + chunkValue
-
-      setMessages([
-        ...newMessages,
-        { role: 'assistant', content: lastMessage } as ChatGPTMessage,
-      ])
-      setLoading(false)
+      const { value, done: doneReading } = await reader.read();
+      done = doneReading;
+      const chunkValue = decoder.decode(value);
+  
+      lastMessage = lastMessage + chunkValue;
     }
+  
+    setLoading(false);
+  
     const jsonRegex = /{(?:[^{}]|{[^{}]*})*}/;
     const isResponseObject = lastMessage.match(jsonRegex);
     console.log(lastMessage);
     console.log(isResponseObject);
     if (isResponseObject) {
-      let msjRgx= "Accion procesada";
-      const cleanedJSON = isResponseObject[0].replace(/\s/g, '');
+      let msjRgx = "Accion procesada";
+      const cleanedJSON = isResponseObject[0].replace(/\s/g, "");
       console.log(msjRgx);
       console.log(cleanedJSON);
       const parsedJSON = JSON.parse(cleanedJSON);
       console.log(parsedJSON);
+  
+      setMessages([
+        ...newMessages,
+        { role: "assistant", content: "Transacción exitosa" } as ChatGPTMessage,
+      ]);
+    } else {
+      setMessages([
+        ...newMessages,
+        { role: "assistant", content: lastMessage } as ChatGPTMessage,
+      ]);
     }
-  }
+  };
 
   return (
     <div className="rounded-2xl border-zinc-100  lg:border lg:p-6 w-full h-full flex flex-col justify-end">
