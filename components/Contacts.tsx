@@ -13,9 +13,9 @@ type Contact = {
 };
 
 const contacts: Contact[] = [
-  { id: 1, name: 'Armando Terrazas', publicKey: '0x1234567890abcdef' },
-  { id: 2, name: 'Daniel Muños', publicKey: '0x0987654321fedcba' },
-  { id: 3, name: 'Inés García', publicKey: '0xabcdef0987654321' },
+  { id: 1, name: 'Armando Terrazas', publicKey: 'E4UoG4a7PuLYmMkFUVamdBpmzSCoUtVicjFNj5Yuk39K' },
+  { id: 2, name: 'Daniel Muños', publicKey: '8AV8uxP1Y8EqmDmc6eciyVhxHS4tkWWmCw7UQekooGqQ' },
+  { id: 3, name: 'Inés García', publicKey: 'Anwyc1s94Fs7hPEm6ohuYuFXN8BMsXJZRjExHziQN1sj' },
   // Add more contacts as needed
 ];
 
