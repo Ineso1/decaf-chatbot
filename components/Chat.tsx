@@ -113,15 +113,15 @@ export function Chat() {
       ])
       setLoading(false)
     }
-    const jsonRegex = /{(?:[^{}]|{[^{}]*})*}/;
-    const isResponseObject = lastMessage.match(jsonRegex);
-    console.log(lastMessage);
-    console.log(isResponseObject);
-    if (isResponseObject) {
-      let msjRgx= "Accion procesada";
-      console.log(msjRgx);
-      console.log(isResponseObject);
-    }
+    // const jsonRegex = /{(?:[^{}]|{[^{}]*})*}/;
+    // const isResponseObject = lastMessage.match(jsonRegex);
+    // console.log(lastMessage);
+    // console.log(isResponseObject);
+    // if (isResponseObject) {
+    //   let msjRgx= "Accion procesada";
+    //   console.log(msjRgx);
+    //   console.log(isResponseObject);
+    // }
   }
 
   return (
