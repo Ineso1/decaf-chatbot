@@ -40,7 +40,7 @@ function Contacts({walletAddress}:any) {
     <div className="flex flex-col py-4 px-2 w-full h-full items-center">
       <div className="flex justify-between items-center mb-4">
         <Text variant="h2" className="text-white">
-          Contacts
+          Contactos
         </Text>
       </div>
       <ul className="list-none flex-grow overflow-auto">

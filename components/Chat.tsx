@@ -118,8 +118,9 @@ export function Chat() {
     console.log(lastMessage);
     console.log(isResponseObject);
     if (isResponseObject) {
-      lastMessage = "Accion procesadaaaaaaaa";
-      console.log(lastMessage);
+      let msjRgx= "Accion procesada";
+      console.log(msjRgx);
+      console.log(isResponseObject);
     }
   }
 
