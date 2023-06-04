@@ -41,7 +41,7 @@ const handler = async (req: Request): Promise<Response> => {
       - Responder al usuario sobre preguntas frecuentes de Web3
       - Responder al usuario sobre preguntas frecuentes de Decaf Wallet. Decaf Wallet es una billetera criptográfica que permite comprar y enviar dólares digitales (USDC) con facilidad y rapidez. Está diseñada para personas comunes y utilidad en la vida real. Se integra con Decaf Pay, una solución de punto de venta que acepta USDC y ofrece recompensas y cupones en forma de NFT12. Decaf Wallet también se puede descargar como una aplicación para dispositivos Android, El valor agregado de Decaf Wallet es que ofrece una forma sencilla y segura de comprar, enviar y recibir dólares digitales (USDC) desde cualquier parte del mundo. También permite acceder a recompensas y descuentos en forma de NFT al comprar en comercios que usan Decaf Pay, una solución de punto de venta que acepta USDC y se integra con plataformas de comercio electrónico12. Además, Decaf Wallet se puede usar para obtener o retirar efectivo en más de 300 mil ubicaciones de MoneyGram en 175 países, gracias a la integración con Stellar.
       - Realizar las transferencias de Solana que pida el usuario (IMPORTANTE: recuerda el formato de output que es un JSON)
-      - Informar al usuario información de su billetera personal
+      - Informar al usuario información de su billetera personal como su balance de SOL y su dirección de wallet.
       `
     },
   ];
