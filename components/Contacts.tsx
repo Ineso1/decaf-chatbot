@@ -2,6 +2,7 @@ import { Text, Button } from '@vercel/examples-ui';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { ellipsizeAddress } from '../utils/SolanaFunctions';
 
 type Contact = {
   id: number;
@@ -16,7 +17,7 @@ const contacts: Contact[] = [
   // Add more contacts as needed
 ];
 
-function Contacts({walletAddress}:any) {
+function Contacts({walletAddress}: {walletAddress: string}) {
   const [copiedContact, setCopiedContact] = useState<string | null>(null);
   const myPublicKey = walletAddress ? walletAddress : '0x0034567890abcdef';
 
@@ -79,7 +80,7 @@ function Contacts({walletAddress}:any) {
               className="px-4 py-1 text-gray-200 rounded w-full text-left hover:bg-slate-400 hover:text-slate-900 focus:outline-none"
               onClick={() => copyToClipboard(myPublicKey)}
             >
-              {myPublicKey.slice(0, 15)}
+              {ellipsizeAddress(myPublicKey)}
             </button>
             {copiedContact === myPublicKey && (
               <span className="text-green-500 ml-2">Copied!</span>
