@@ -64,7 +64,7 @@ function Contacts() {
               </button>
             </div>
             {copiedContact === contact.publicKey && (
-              <span className="text-green-500 ml-2">Copied!</span>
+              <span className="text-green-500 ml-2">¡Copiado!</span>
             )}
           </li>
         ))}
@@ -73,10 +73,10 @@ function Contacts() {
         <div className="flex-grow" /> {/* Spacer to push the buttons to the bottom */}
         <div className="flex flex-col justify-center w-full items-center">
           <Button onClick={handleManageContacts} className="my-4 w-full">
-            Manage Contacts
+            Administrar Contactos
           </Button>
           <Button onClick={handleCreateContact} className="w-full" variant="secondary">
-            Create Contact
+            Crear Contacto
           </Button>
         </div>
         <div className="flex flex-col items-center mt-4">
@@ -90,7 +90,7 @@ function Contacts() {
               {ellipsizeAddress(myPublicKey)}
             </button>
             {copiedContact === myPublicKey && (
-              <span className="text-green-500 ml-2">Copied!</span>
+              <span className="text-green-500 ml-2">¡Copiado!</span>
             )}
           </div>
         </div>

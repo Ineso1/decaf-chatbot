@@ -31,6 +31,7 @@ const InputMessage = ({ input, setInput, sendMessage }: any) => (
       onChange={(e) => {
         setInput(e.target.value)
       }}
+      placeholder='Escribe aquí...'
     />
     <Button
       type="submit"
@@ -40,7 +41,7 @@ const InputMessage = ({ input, setInput, sendMessage }: any) => (
         setInput('')
       }}
     >
-      Send
+      Enviar
     </Button>
   </div>
 )
@@ -160,7 +161,7 @@ export function Chat({walletPublicKey}: { walletPublicKey: string }) {
 
       {messages.length < 2 && (
         <span className="mx-auto flex flex-grow text-gray-600 clear-both items-center justify-center">
-          Type a message to start the conversation
+          Escribe un mensaje para comenzar
         </span>
       )}
       <InputMessage
