@@ -9,7 +9,7 @@ const COOKIE_NAME = 'nextjs-example-ai-chat-gpt3'
 export const initialMessages: ChatGPTMessage[] = [
   {
     role: 'assistant',
-    content: 'Hi! I am a Decaf AI assistant. Ask me anything!',
+    content: '¡Hola! Soy Decaf, el asistente virtual de Decaf Wallet. ¿En qué puedo ayudarte?',
   },
 ]
 
@@ -67,6 +67,7 @@ export function Chat() {
     ]
     setMessages(newMessages)
     const last10messages = newMessages.slice(-10) // remember last 10 messages
+    console.log('Sending to edge function: ', last10messages)
 
     const response = await fetch('/api/chat', {
       method: 'POST',
@@ -80,6 +81,7 @@ export function Chat() {
     })
 
     console.log('Edge function returned.')
+    console.log(response)
 
     if (!response.ok) {
       throw new Error(response.statusText)
