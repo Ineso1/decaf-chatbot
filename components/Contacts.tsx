@@ -16,9 +16,9 @@ const contacts: Contact[] = [
   // Add more contacts as needed
 ];
 
-function Contacts() {
+function Contacts({walletAddress}:any) {
   const [copiedContact, setCopiedContact] = useState<string | null>(null);
-  const myPublicKey = '0x0034567890abcdef'; // Replace with your actual public key
+  const myPublicKey = walletAddress ? walletAddress : '0x0034567890abcdef';
 
   const copyToClipboard = (publicKey: string) => {
     navigator.clipboard.writeText(publicKey);
@@ -79,7 +79,7 @@ function Contacts() {
               className="px-4 py-1 text-gray-200 rounded w-full text-left hover:bg-slate-400 hover:text-slate-900 focus:outline-none"
               onClick={() => copyToClipboard(myPublicKey)}
             >
-              {myPublicKey}
+              {myPublicKey.slice(0, 15)}
             </button>
             {copiedContact === myPublicKey && (
               <span className="text-green-500 ml-2">Copied!</span>

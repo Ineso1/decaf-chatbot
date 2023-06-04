@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Button } from './Button'
 import { type ChatGPTMessage, ChatLine, LoadingChatLine } from './ChatLine'
 import { useCookies } from 'react-cookie'
+import { Console } from 'console'
 
 const COOKIE_NAME = 'nextjs-example-ai-chat-gpt3'
 
@@ -110,14 +111,21 @@ export function Chat() {
         ...newMessages,
         { role: 'assistant', content: lastMessage } as ChatGPTMessage,
       ])
-
       setLoading(false)
+    }
+    const jsonRegex = /{(?:[^{}]|{[^{}]*})*}/;
+    const isResponseObject = lastMessage.match(jsonRegex);
+    console.log(lastMessage);
+    console.log(isResponseObject);
+    if (isResponseObject) {
+      lastMessage = "Accion procesadaaaaaaaa";
+      console.log(lastMessage);
     }
   }
 
   return (
-    <div className="rounded-2xl border-zinc-100  lg:border lg:p-6 w-full h-full flex flex-col">
-      <div className='h-[500px] overflow-y-auto'>
+    <div className="rounded-2xl border-zinc-100  lg:border lg:p-6 w-full h-full flex flex-col justify-end">
+      <div className='h-full overflow-y-auto'>
       {messages.map(({ content, role }, index) => (
         <ChatLine key={index} role={role} content={content} image="decaf_logo.png"/>
       ))}

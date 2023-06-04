@@ -1,7 +1,10 @@
 import { Chat } from '../components/Chat';
 import Contacts from '../components/Contacts';
+import { Cookies } from "react-cookie";
 
 function Home() {
+  const cookies = new Cookies();
+  const walletAddress = cookies.get("walletAddress");
   return (
     <div className="bg-slate-900 flex flex-col h-screen">
       <main className="flex flex-grow">
